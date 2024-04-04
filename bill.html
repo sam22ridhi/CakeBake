@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- html2pdf CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+ 
+    <style>
+        :root {
+            --primary-color: #EDDBC7;
+            --secondary-color: #A7727D;
+            --accent-color: #a7727d82;
+            --white: #fff;
+            --black: #000;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: var(--white);
+        }
+
+        .container {
+            width: 400px;
+            text-align: center;
+        }
+ 
+        .receipt {
+            padding: 20px;
+            border: 1px solid var(--black);
+            font-family: Arial, sans-serif;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+        }
+ 
+        .receipt h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .receipt ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .receipt li {
+            margin-bottom: 10px;
+        }
+
+        .receipt h4 {
+            margin: 0;
+            color: var(--black);
+        }
+
+        #button {
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="receipt" id="makepdf">
+            <h2>Payment Receipt</h2>
+            <ul>
+                <li>
+                    <h4>
+                       <strong>Date:</strong> April 4, 2024
+                    </h4>
+                </li>
+                <li>
+                    <h4>
+                        <strong>Amount Paid:</strong> 1800
+                    </h4>
+                </li>
+                <li>
+                    <h4>
+                        <strong>Payment Method:</strong> Credit Card
+                    </h4>
+                </li>
+                <li>
+                    <h4>
+                        <strong>Transaction ID:</strong> Samridhi Raj Sinha
+                    </h4>
+                </li>
+                <li>
+                    <h4>
+                        <strong>Recipient:</strong> CakeBake
+                    </h4>
+                </li>
+            </ul>
+        </div>
+        <button id="button">Download Receipt (PDF)</button>
+    </div>
+ 
+    <script>
+        let button = document.getElementById("button");
+        let makepdf = document.getElementById("makepdf");
+ 
+        button.addEventListener("click", function () {
+            html2pdf().from(makepdf).save();
+        });
+    </script>
+</body>
+</html>

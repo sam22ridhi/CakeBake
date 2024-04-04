@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="form.css">
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet'>
+    <title>Document</title>
+</head>
+
+<body>
+  <!--using bootstrap css beloww-->
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-md-7 ftco-animate makereservation p-4 px-md-5 pb-md-5">
+                <div class="heading-section ftco-animate mb-5 text-center">
+                    <span class="subheading">Create</span>
+                    <h2 class="mb-4">Your Account</h2>
+                </div>
+                <!--connecting to php aka database file -->
+                <form action="account_creation_script.php" onsubmit= "return validateForm()" method="POST">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Samridhi " required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="sam13@gmail.com" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary py-3 px-5">Create Account</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var confirm_password = document.getElementById("confirm_password").value;
+
+    // Name validation: only letters and limits 225
+    var namePattern = /^[A-Za-z\s]{1,225}$/;
+    if (!name.match(namePattern)) {
+        alert("Full Name should contain only letters and have a character limit of 225.");
+        return false; 
+    }
+
+    // Email validation: Check for valid email syntax
+    var emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!email.match(emailPattern)) {
+        alert("Please enter a valid email address.");
+        return false; 
+    }
+
+    // Password validation
+    if (password.length < 8) {
+        alert("Password must be at least 8 characters long.");
+        return false;
+    }
+
+    // Password strength: 1 uppercase,lowercase and 1 digit
+    var passwordStrengthPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!password.match(passwordStrengthPattern)) {
+        alert("Password must contain at least one uppercase letter, one lowercase letter, and one digit.");
+        return false; // Prevent form submission
+    }
+
+    // Confirm Password validation
+    if (password !== confirm_password) {
+        alert("Password and Confirm Password must match");
+        return false;
+    }
+
+    //pop up
+    alert("Account created successfully!");
+    return true;
+}
+</script>
+    
+</body>
+
+</html>
